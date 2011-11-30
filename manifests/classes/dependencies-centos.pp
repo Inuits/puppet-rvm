@@ -7,7 +7,7 @@ class rvm::dependencies::centos {
   if ! defined(Package['libtool'])      { package { 'libtool':      ensure => installed } }  
   if ! defined(Package['gettext-devel'])      { package { 'gettext-devel':      ensure => installed } }
   if ! defined(Package['expat-devel'])      { package { 'expat-devel':      ensure => installed } }
-  if ! defined(Package['libcurl-devel'])      { package { 'libcurl-devel':      ensure => installed } }
+  if ! defined(Package['libcurl-devel'])      { package { 'curl-devel':      ensure => installed, alias => 'libcurl-devel' } }
   if ! defined(Package['zlib-devel'])      { package { 'zlib-devel':      ensure => installed } }
   if ! defined(Package['openssl-devel'])      { package { 'openssl-devel':      ensure => installed } }
   if ! defined(Package['perl'])      { package { 'perl':      ensure => installed } }
