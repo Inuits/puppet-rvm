@@ -7,7 +7,6 @@ class rvm::dependencies::centos {
   if ! defined(Package['libtool'])      { package { 'libtool':      ensure => installed } }
   if ! defined(Package['gettext-devel'])      { package { 'gettext-devel':      ensure => installed } }
   if ! defined(Package['expat-devel'])      { package { 'expat-devel':      ensure => installed } }
-  if ! defined(Package['libcurl-devel'])      { package { 'curl-devel':      ensure => installed, alias => 'libcurl-devel' } }
   if ! defined(Package['zlib-devel'])      { package { 'zlib-devel':      ensure => installed } }
   if ! defined(Package['openssl-devel'])      { package { 'openssl-devel':      ensure => installed } }
   if ! defined(Package['perl'])      { package { 'perl':      ensure => installed } }
@@ -25,4 +24,12 @@ class rvm::dependencies::centos {
   if ! defined(Package['readline-devel'])      { package { 'readline-devel':      ensure => installed } }
   if ! defined(Package['patch'])      { package { 'patch':      ensure => installed } }
   if ! defined(Package['git'])      { package { 'git':      ensure => installed } }
+
+  $curl_devel = $::operatingsystemrelease ? {
+    /^6/ => 'libcurl-devel',
+    /^5/ => 'curl-devel',
+    default => 'curl-devel'
+  }
+
+  if ! defined(Package['libcurl-devel'])      { package { $curl_devel:      ensure => installed, alias => 'libcurl-devel' } }
 }
